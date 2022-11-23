@@ -1,0 +1,51 @@
+{
+  "name": "react-drag-resize-growth",
+  "version": "1.0.0",
+  "description": "React 用于可调整大小和可拖动元素的组件并支持冲突检测与与操作回溯",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development webpack serve",
+    "svg": "vsvg -s ./src/demo/svg -t ./src/demo/icons",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LinJiaHongAlan/react-drag-resize-growth.git"
+  },
+  "author": {
+    "name": "linjiahong",
+    "email": "Mcljhong@outlook.com",
+    "url": ""
+  },
+  "license": "ISC",
+  "dependencies": {
+    "classnames": "^2.3.2",
+    "deep-extend": "^0.6.0",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "keywords": [
+    "react",
+    "component",
+    "drag",
+    "resize",
+    "dragabble",
+    "resizable"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.20.2",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-react": "^7.18.6",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.9",
+    "babel-loader": "^9.1.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.27.0",
+    "html-webpack-plugin": "^5.5.0",
+    "react-refresh": "^0.14.0",
+    "styled-components": "^5.3.6",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.1"
+  }
+}
