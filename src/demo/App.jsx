@@ -17,9 +17,6 @@ function App() {
   const goOperationStepStepHandel = () =>{
     ReactDrageResizeRef.current.goOperationStep(-2)
   }
-  const getHistoryStepsHandel = () =>{
-    console.log(ReactDrageResizeRef.current.historySteps)
-  }
 
   return (
     <div style={{ width: '100%', height: width + 'px', background: 'green' }} className="App">
@@ -27,7 +24,6 @@ function App() {
         <button onClick={previousOperationStepHandel}>上一步</button>
         <button onClick={nextOperationStepHandel}>下一步</button>
         <button onClick={goOperationStepStepHandel}>跳到前2步</button>
-        <button onClick={getHistoryStepsHandel}>获取信息</button>
       </div>
 
       <ReactDragResize style={{backgroundColor: 'pink'}} w={200} h={200} historyStepsLength={30} ref={ReactDrageResizeRef} isConflictCheck={true}>

@@ -8,10 +8,6 @@
     "svg": "vsvg -s ./src/demo/svg -t ./src/demo/icons",
     "build": "webpack"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/LinJiaHongAlan/react-drag-resize-growth.git"
-  },
   "author": {
     "name": "linjiahong",
     "email": "Mcljhong@outlook.com",

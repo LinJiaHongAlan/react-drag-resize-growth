@@ -105,7 +105,7 @@ const ReactDragResize = memo(forwardRef((props, ref) => {
         const result = operationStepsHandel(step)
         return result
       },
-      historySteps: historyStepsSync.current
+      historySteps: historyStepsSync
     }
   })
 
