@@ -26,7 +26,7 @@ import ReactDragResize from 'react-drag-resize-growth';
 <ReactDragResize></ReactDragResize>;
 ```
 
-##基本使用
+### 基本使用
 <hr/>
 
 **插槽**<br/>
@@ -238,7 +238,7 @@ import ReactDragResize from 'react-drag-resize-growth';
 </ReactDragResize>
 ```
 
-##事件
+## 事件
 <hr/>
 
 **onClicBodyDown**<br/>
@@ -322,7 +322,7 @@ const onResizestopHandel = ({ comid, beforeMove, curMove }) => {
 </ReactDragResize>
 ```
 
-##父级
+## 父级
 <hr/>
 
 **parentW**<br/>
@@ -360,7 +360,7 @@ const onResizestopHandel = ({ comid, beforeMove, curMove }) => {
 <ReactDragResize parentH={800} parentW={800} parentLimitation={true} />
 ```
 
-##高级使用
+## 高级使用
 <hr/>
 
 **isActive**<br/>
