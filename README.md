@@ -26,7 +26,7 @@ import ReactDragResize from 'react-drag-resize-growth';
 <ReactDragResize></ReactDragResize>;
 ```
 
-### 基本使用
+## 基本使用
 
 **插槽**<br/>
 类型: `ReactNode`<br/>必需: `false`<br/>
