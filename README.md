@@ -27,7 +27,6 @@ import ReactDragResize from 'react-drag-resize-growth';
 ```
 
 ### 基本使用
-<hr/>
 
 **插槽**<br/>
 类型: `ReactNode`<br/>必需: `false`<br/>
@@ -239,7 +238,6 @@ import ReactDragResize from 'react-drag-resize-growth';
 ```
 
 ## 事件
-<hr/>
 
 **onClicBodyDown**<br/>
 类型: `Function`<br/>必需: `false`<br/>默认: `null`<br/>
@@ -323,7 +321,6 @@ const onResizestopHandel = ({ comid, beforeMove, curMove }) => {
 ```
 
 ## 父级
-<hr/>
 
 **parentW**<br/>
 类型: `Number`<br/>必需: `false`<br/>默认: `null`<br/>限制：`必须大于 0 或 null`<br/>
@@ -361,7 +358,6 @@ const onResizestopHandel = ({ comid, beforeMove, curMove }) => {
 ```
 
 ## 高级使用
-<hr/>
 
 **isActive**<br/>
 类型: `Boolen`<br/>必需: `false`<br/>默认: `null`
