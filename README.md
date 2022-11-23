@@ -19,6 +19,13 @@ npm install react-drag-resize-growth
 yarn add react-drag-resize-growth
 ```
 
+## 引入
+```jsx
+import ReactDragResize from 'react-drag-resize-growth';
+
+<ReactDragResize></ReactDragResize>;
+```
+
 ## 使用说明
 <hr/>
 
