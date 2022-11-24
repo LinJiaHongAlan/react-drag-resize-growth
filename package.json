@@ -1,6 +1,6 @@
 {
   "name": "react-drag-resize-growth",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "React 用于可调整大小和可拖动元素的组件并支持冲突检测与与操作回溯",
   "main": "dist/index.js",
   "scripts": {
@@ -13,13 +13,18 @@
     "email": "Mcljhong@outlook.com",
     "url": ""
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LinJiaHongAlan/react-drag-resize-growth.git"
+  },
   "license": "ISC",
   "dependencies": {
     "classnames": "^2.3.2",
     "deep-extend": "^0.6.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "styled-components": "^5.3.6"
   },
   "keywords": [
     "react",
@@ -36,10 +41,17 @@
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.9",
     "babel-loader": "^9.1.0",
     "cross-env": "^7.0.3",
-    "eslint": "^8.27.0",
+    "eslint": "^8.28.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "html-webpack-plugin": "^5.5.0",
+    "prettier": "^2.8.0",
     "react-refresh": "^0.14.0",
-    "styled-components": "^5.3.6",
     "webpack": "^5.75.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.11.1"
