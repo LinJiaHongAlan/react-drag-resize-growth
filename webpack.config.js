@@ -1,20 +1,20 @@
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-const config = require('./config');
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
+const config = require('./config')
 // const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-const plugins = [];
+const plugins = []
 switch (process.env.NODE_ENV) {
   case 'development':
     plugins.push(new HtmlWebpackPlugin({
       template: './static/index.html',
       title: 'REACT-DRAGGABLE-RESIZEBLE',
-    }));
-    plugins.push(new ReactRefreshWebpackPlugin());
-    break;
+    }))
+    plugins.push(new ReactRefreshWebpackPlugin())
+    break
   default:
-    break;
+    break
 }
 
 module.exports = {
@@ -26,6 +26,9 @@ module.exports = {
     // noInfo: true,
     open: config.server.autoOpenBrowser,
     port: config.server.port,
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.json']
   },
   // externals: {
   //   'react': {
@@ -57,4 +60,4 @@ module.exports = {
     filename: '[name].js',
     libraryTarget: 'umd',
   },
-};
+}

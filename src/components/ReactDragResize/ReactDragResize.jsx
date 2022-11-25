@@ -1,6 +1,7 @@
-import React, { memo, useState, useEffect, useCallback, useMemo, useRef, forwardRef, useImperativeHandle } from 'react'
+import React, { memo, useState, useEffect, useCallback, useMemo, useRef, forwardRef, useImperativeHandle, useContext } from 'react'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
+import ReactDragResizeGroup, { ReactDragResizeContext } from '../ReactDragResizeGroup/ReactDragResizeGroup'
 import { ReactDragResizeWrapper } from './style'
 import { useSyncState } from '../../hooks/useSyncState'
 import { useConflictCheck } from './hooks/useConflictCheck'
@@ -73,6 +74,7 @@ const ReactDragResize = memo(
     const [right, setRight] = useState(null)
     const [bottom, setBottom] = useState(null)
 
+
     const { recordHistorySteps, recordCurrentSteps, getHistorySteps, historyStepsSync, setCurStep, curStepSync } =
       useHistorySteps(props.historyStepsLength)
 
@@ -125,6 +127,8 @@ const ReactDragResize = memo(
       rootRef
     })
 
+    const reactDragResizeContext = useContext(ReactDragResizeContext)
+
     // 添加watch监听
     useWatch(props.w, (newVal, oldVal) => {
       if (stickDragSync.current || bodyDragSync.current || newVal === width) {
@@ -176,7 +180,10 @@ const ReactDragResize = memo(
     useWatch(
       props.isActive,
       (newVal) => {
-        setActive(newVal)
+        if (!reactDragResizeContext) {
+          // 只有当不存在组里面的时候才是受控的
+          setActive(newVal)
+        }
       },
       { immediate: true }
     )
@@ -220,6 +227,21 @@ const ReactDragResize = memo(
         })
       }
     }, [])
+
+    // 注册在组里面
+    useEffect(() => {
+      reactDragResizeContext?.registerDragResize(_uid.current, {
+        setActive
+      })
+      return () => {
+        reactDragResizeContext?.unregisterDragResize(_uid.current)
+      }
+    }, [])
+    // setTimeout(() => {
+    //   Object.values(reactDragResizeContext.getTotalDragResizeContext()).forEach(item => {
+    //     item.setActive(true)
+    //   })
+    // }, 0)
 
     // 添加document事件
     useEffect(() => {
@@ -436,8 +458,20 @@ const ReactDragResize = memo(
       if (props.onClicBodyDown) {
         props.onClicBodyDown({ comid: props.comid, ev })
       }
-      // 设置为激活状态
-      changeActiveHandel(true)
+      // 如果物体在组里,受组的控制
+      if (reactDragResizeContext) {
+        // 取消组里其他物体的激活状态
+        const totalDragResizeContext = reactDragResizeContext.getTotalDragResizeContext()
+        Object.keys(totalDragResizeContext).forEach(uid => {
+          if (_uid !== uid) {
+            totalDragResizeContext[uid].setActive(false)
+          }
+        })
+        setActive(true)
+      } else {
+        // 否者受自身控制,设置为激活状态
+        changeActiveHandel(true)
+      }
       // 设置为活动状态
       setIsOperation(true)
 
@@ -1110,5 +1144,7 @@ ReactDragResize.defaultProps = {
   onResizing: null,
   onResizestop: null
 }
+
+ReactDragResize.Group = ReactDragResizeGroup
 
 export default ReactDragResize

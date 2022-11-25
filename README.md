@@ -428,6 +428,44 @@ const getHistoryStepsHandel = () =>{
 </ReactDragResize>
 ```
 
+## 组（Group）的使用
+
+ReactDragResize组件可以在外层包裹一层`Group`，包裹后则可以使用组的功能，激活状态`active`则不再受自身影响，而受`Group`的控制,在`Group`激活转态只会存在一个<br/>
+
+```jsx
+<ReactDragResize.Group>
+  <ReactDragResize
+    style={{ backgroundColor: 'pink' }}
+    w={200}
+    h={200}
+    isConflictCheck
+  >
+    我们是一个组
+  </ReactDragResize>
+
+  <ReactDragResize
+    style={{ backgroundColor: 'pink' }}
+    w={200}
+    h={200}
+    x={300}
+    y={300}
+    isConflictCheck
+  >
+    我们是一个组
+  </ReactDragResize>
+  <ReactDragResize
+    style={{ backgroundColor: 'pink' }}
+    w={200}
+    h={200}
+    x={300}
+    y={300}
+    isConflictCheck
+  >
+    我们是一个组
+  </ReactDragResize>
+</ReactDragResize.Group>
+```
+
 
 
 
