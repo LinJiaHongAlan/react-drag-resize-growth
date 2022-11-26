@@ -24,6 +24,7 @@ module.exports = {
     'react/jsx-filename-extension': 'off',
     'prettier/prettier': 'off',
     'react/prop-types': 'off',
-    'jsx-a11y/no-static-element-interactions': 'off'
+    'jsx-a11y/no-static-element-interactions': 'off',
+    'react/jsx-no-constructed-context-values': 'off'
   }
 }

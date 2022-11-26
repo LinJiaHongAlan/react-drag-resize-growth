@@ -3,6 +3,7 @@ import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import ReactDragResizeGroup, { ReactDragResizeContext } from '../ReactDragResizeGroup/ReactDragResizeGroup'
 import { ReactDragResizeWrapper } from './style'
+import { usekeyDirection } from '../hooks/usekeyDirection'
 import { useSyncState } from '../../hooks/useSyncState'
 import { useConflictCheck } from './hooks/useConflictCheck'
 import { useHistorySteps } from './hooks/useHistorySteps'
@@ -67,18 +68,27 @@ const ReactDragResize = memo(
     const [, setCurrentStick, currentStickSync] = useSyncState(null, false)
     const [active, setActive, activeSync] = useSyncState(null)
     const [zIndex, setZindex] = useState(null)
-    const [parentWidth, setParentWidth] = useState(null)
-    const [parentHeight, setParentHeight] = useState(null)
-    const [left, setLeft] = useState(null)
-    const [top, setTop] = useState(null)
-    const [right, setRight] = useState(null)
-    const [bottom, setBottom] = useState(null)
-
+    const [parentWidth, setParentWidth, setParentWidthSync] = useSyncState(null)
+    const [parentHeight, setParentHeight, parentHeightSync] = useSyncState(null)
+    const [left, setLeft, leftSync] = useSyncState(null)
+    const [top, setTop, topSync] = useSyncState(null)
+    const [right, setRight, rightSync] = useSyncState(null)
+    const [bottom, setBottom, bottomSync] = useSyncState(null)
 
     const { recordHistorySteps, recordCurrentSteps, getHistorySteps, historyStepsSync, setCurStep, curStepSync } =
       useHistorySteps(props.historyStepsLength)
 
     const setPosition = ({ top, left, right, bottom }) => {
+      // 如果高宽小于0则不让操作
+      if (parentHeightSync.current - bottom - top <= 1 || setParentWidthSync.current - right - left <= 1) {
+        return
+      }
+      // 如果有开启父级限制范围，则需判断是否超出
+      if (props.parentLimitation === true) {
+        if (top < 0 || left < 0 || right < 0 || bottom < 0) {
+          return
+        }
+      }
       setTop(top)
       setLeft(left)
       setRight(right)
@@ -128,6 +138,35 @@ const ReactDragResize = memo(
     })
 
     const reactDragResizeContext = useContext(ReactDragResizeContext)
+
+    // 注册键盘时间
+    usekeyDirection({
+      // 如果在组里，则注册
+      register: !reactDragResizeContext && !(props.keyDirection === null || props.keyDirection === false),
+      directionStep: props.directionStep,
+      shiftDirectionStep: props.shiftDirectionStep,
+      keyDownDirectionHandel: ({ direction, step, altKey, getNewPosition }) => {
+        if (activeSync.current === true) {
+          const { top: newTop, left: newLeft, right: newRight, bottom: newBottom } = getNewPosition({
+              direction,
+              step,
+              altKey,
+              curPosition: {
+                top: topSync.current,
+                left: leftSync.current,
+                right: rightSync.current,
+                bottom: bottomSync.current
+              }
+            })
+            setPosition({
+              top: newTop,
+              left: newLeft,
+              right: newRight,
+              bottom: newBottom
+            })
+          }
+        }
+    })
 
     // 添加watch监听
     useWatch(props.w, (newVal, oldVal) => {
@@ -231,7 +270,18 @@ const ReactDragResize = memo(
     // 注册在组里面
     useEffect(() => {
       reactDragResizeContext?.registerDragResize(_uid.current, {
-        setActive
+        setActive,
+        activeSync,
+        comid: props.comid,
+        getCurPosition: () => {
+          return {
+            left: leftSync.current,
+            right: rightSync.current,
+            top: topSync.current,
+            bottom: bottomSync.current
+          }
+        },
+        setPosition
       })
       return () => {
         reactDragResizeContext?.unregisterDragResize(_uid.current)
@@ -1102,7 +1152,11 @@ ReactDragResize.propTypes = {
   // 缩放
   onResizing: PropTypes.func,
   // 缩放结束
-  onResizestop: PropTypes.func
+  onResizestop: PropTypes.func,
+  directionStep: PropTypes.number,
+  shiftDirectionStep: PropTypes.number,
+  // 键盘方向
+  keyDirection: PropTypes.bool
 }
 ReactDragResize.defaultProps = {
   comid: null,
@@ -1142,7 +1196,10 @@ ReactDragResize.defaultProps = {
   onDragging: null,
   onDragstop: null,
   onResizing: null,
-  onResizestop: null
+  onResizestop: null,
+  directionStep: 1,
+  shiftDirectionStep: 10,
+  keyDirection: null
 }
 
 ReactDragResize.Group = ReactDragResizeGroup

@@ -466,6 +466,127 @@ ReactDragResize组件可以在外层包裹一层`Group`，包裹后则可以使�
 </ReactDragResize.Group>
 ```
 
+**defaultActive**<br/>
+
+在组内支持，默认激活，defaultActive与comid一致时候则激活
+
+```jsx
+<ReactDragResize.Group defaultActive="1">
+  <ReactDragResize
+    comid="1"
+    style={{ backgroundColor: 'pink' }}
+    w={200}
+    h={200}
+    isConflictCheck
+  >
+    我们是一个组,并且我是默认激活的那个
+  </ReactDragResize>
+  <ReactDragResize
+    comid="2"
+    style={{ backgroundColor: 'pink' }}
+    w={200}
+    h={200}
+    x={300}
+    y={300}
+    isConflictCheck
+  >
+    我们是一个组
+  </ReactDragResize>
+</ReactDragResize.Group>
+```
+
+
+
+## 键盘控制2022.11.26新增
+
+**keyDirection**<br/>
+类型: `String 或 Boolen`<br/>必需: `false`<br/>默认: `null`<br/>
+**directionStep**<br/>
+类型: `String 或 Boolen`<br/>必需: `false`<br/>默认: `null`<br/>
+**shiftDirectionStep**<br/>
+类型: `String 或 Boolen`<br/>必需: `false`<br/>默认: `null`<br/>
+
+
+keyDirection为为`null`的时候则不开启，若为true的时候，则激活状态会受键盘控制，若为字符串则与comid一致时受键盘控制
+键盘控制方法为方向键 “←”，“→”，“↑”，“↓”  或者是 `shift` + “←”，“→”，“↑”，“↓” 
+默认移动距离为1px，按住`shift`为10px,可通过`directionStep` `shiftDirectionStep` 修改对应的步数
+
+**单个组件**<br/>
+keyDirection为`null`的时候则不开启,若为true的时候，则激活状态会受键盘控制
+```jsx
+<ReactDragResize
+  keyDirection={true}
+  directionStep={1}
+  shiftDirectionStep={10}
+  style={{ backgroundColor: 'pink' }}
+  w={200}
+  h={200}
+  x={300}
+  y={300}
+  isConflictCheck
+>
+  开启键盘移动,按住shift可移动10px
+</ReactDragResize>
+```
+
+**使用组包裹**<br/>
+
+```jsx
+<ReactDragResize.Group
+  keyDirection={true}
+  directionStep={1}
+  shiftDirectionStep={10}>
+  <ReactDragResize
+    comid="1"
+    style={{ backgroundColor: 'pink' }}
+    w={200}
+    h={200}
+    isConflictCheck
+  >
+    谁被激活，谁受控制
+  </ReactDragResize>
+  <ReactDragResize
+    comid="2"
+    style={{ backgroundColor: 'pink' }}
+    w={200}
+    h={200}
+    x={300}
+    y={300}
+    isConflictCheck
+  >
+    谁被激活，谁受控制
+  </ReactDragResize>
+</ReactDragResize.Group>
+```
+
+```jsx
+<ReactDragResize.Group
+  keyDirection="1"
+  directionStep={1}
+  shiftDirectionStep={10}>
+  <ReactDragResize
+    comid="1"
+    style={{ backgroundColor: 'pink' }}
+    w={200}
+    h={200}
+    isConflictCheck
+  >
+    我是被控制的那个
+  </ReactDragResize>
+  <ReactDragResize
+    comid="2"
+    style={{ backgroundColor: 'pink' }}
+    w={200}
+    h={200}
+    x={300}
+    y={300}
+    isConflictCheck
+  >
+    我不是被控制的那个
+  </ReactDragResize>
+</ReactDragResize.Group>
+```
+
 
 
 
