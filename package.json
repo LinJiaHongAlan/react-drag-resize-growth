@@ -1,7 +1,7 @@
 {
   "name": "react-drag-resize-growth",
-  "version": "1.0.2",
-  "description": "React 用于可调整大小和可拖动元素的组件并支持冲突检测与与操作回溯",
+  "version": "1.1.1",
+  "description": "React 用于可调整大小和可拖动元素的组件并支持冲突检测与与操作回溯，1.1.1版本新增Group组件,新增键盘操作",
   "main": "dist/index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack serve",
