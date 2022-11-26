@@ -4,7 +4,7 @@
 
 > 说明：组件基于[vue-draggable-resizable](https://github.com/mauricius/vue-draggable-resizable)为参考借鉴，进行的React版本改造
 
-部分功能使用，基于考虑略有修改，相对于原本设计上进行了部分优化
+部分功能使用，基于考虑略有修改，相对于原本设计上进行了部分优化,支持操作操作回溯以及，键盘操作功能
 
 [npm地址](https://www.npmjs.com/package/react-drag-resize-growth)
 
