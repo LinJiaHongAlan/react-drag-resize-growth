@@ -1,52 +1,53 @@
 import { useEffect } from 'react'
 // 方向事件注册
 
-// 获取新的位置
-const getNewPosition = ({ direction, step, altKey, curPosition }) => {
-  // 获取当前位置
-  let left = curPosition.left
-  let right = curPosition.right
-  let top = curPosition.top
-  let bottom = curPosition.bottom
-
-  if (direction === 'left') {
-    if (altKey) {
-      right = right + step
-    } else {
-      left = left - step
-      right = right + step
-    }
-  } else if (direction === 'top') {
-    if (altKey) {
-      bottom = bottom + step
-    } else {
-      top = top - step
-      bottom = bottom + step
-    }
-  } else if (direction === 'right') {
-    if (altKey) {
-      right = right - step
-    } else {
-      right = right - step
-      left = left + step
-    }
-  } else if (direction === 'bottom') {
-    if (altKey) {
-      bottom = bottom - step
-    } else {
-      bottom = bottom - step
-      top = top + step
-    }
-  }
-  return {
-    top,
-    left,
-    right,
-    bottom
-  }
-}
 
 const usekeyDirection = ({ register, directionStep, shiftDirectionStep, keyDownDirectionHandel }) => {
+
+  // 获取新的位置
+  const getNewPosition = ({ direction, step, altKey, curPosition }) => {
+    // 获取当前位置
+    let left = curPosition.left
+    let right = curPosition.right
+    let top = curPosition.top
+    let bottom = curPosition.bottom
+
+    if (direction === 'left') {
+      if (altKey) {
+        right = right + step
+      } else {
+        left = left - step
+        right = right + step
+      }
+    } else if (direction === 'top') {
+      if (altKey) {
+        bottom = bottom + step
+      } else {
+        top = top - step
+        bottom = bottom + step
+      }
+    } else if (direction === 'right') {
+      if (altKey) {
+        right = right - step
+      } else {
+        right = right - step
+        left = left + step
+      }
+    } else if (direction === 'bottom') {
+      if (altKey) {
+        bottom = bottom - step
+      } else {
+        bottom = bottom - step
+        top = top + step
+      }
+    }
+    return {
+      top,
+      left,
+      right,
+      bottom
+    }
+  }
 
    // 方向按下
   const keyDownDirection = (ev) => {

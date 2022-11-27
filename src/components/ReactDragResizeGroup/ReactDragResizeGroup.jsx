@@ -5,7 +5,8 @@ import PropTypes, { oneOfType } from 'prop-types'
 export const ReactDragResizeContext = createContext()
 
 // 拖拽组
-const ReactDragResizeGroup = memo(function (props) {
+const ReactDragResizeGroup = memo((props) => {
+
   const dragResizeGroupRef = useRef({
     Items: {}
   })
@@ -65,7 +66,6 @@ const ReactDragResizeGroup = memo(function (props) {
       }
     }
   })
-
 
   return (
     <ReactDragResizeContext.Provider

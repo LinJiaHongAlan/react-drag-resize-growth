@@ -287,11 +287,6 @@ const ReactDragResize = memo(
         reactDragResizeContext?.unregisterDragResize(_uid.current)
       }
     }, [])
-    // setTimeout(() => {
-    //   Object.values(reactDragResizeContext.getTotalDragResizeContext()).forEach(item => {
-    //     item.setActive(true)
-    //   })
-    // }, 0)
 
     // 添加document事件
     useEffect(() => {

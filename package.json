@@ -1,6 +1,6 @@
 {
   "name": "react-drag-resize-growth",
-  "version": "1.1.2",
+  "version": "1.1.9",
   "description": "React 用于可调整大小和可拖动元素的组件并支持冲突检测与与操作回溯与键盘操作",
   "main": "dist/index.js",
   "scripts": {
@@ -20,10 +20,9 @@
   "license": "ISC",
   "dependencies": {
     "classnames": "^2.3.2",
+    "clean-webpack-plugin": "^4.0.0",
     "deep-extend": "^0.6.0",
     "prop-types": "^15.8.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "styled-components": "^5.3.6"
   },
   "keywords": [
@@ -51,9 +50,12 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "html-webpack-plugin": "^5.5.0",
     "prettier": "^2.8.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-refresh": "^0.14.0",
     "webpack": "^5.75.0",
     "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.11.1"
+    "webpack-dev-server": "^4.11.1",
+    "webpack-node-externals": "^3.0.0"
   }
 }

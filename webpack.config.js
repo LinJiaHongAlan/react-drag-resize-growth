@@ -1,5 +1,7 @@
 const webpack = require('webpack')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+// const nodeExternals = require('webpack-node-externals')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const config = require('./config')
 // const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -14,6 +16,7 @@ switch (process.env.NODE_ENV) {
     plugins.push(new ReactRefreshWebpackPlugin())
     break
   default:
+    plugins.push(new CleanWebpackPlugin())
     break
 }
 
@@ -30,30 +33,18 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.json']
   },
-  // externals: {
-  //   'react': {
-  //     'commonjs': 'react',
-  //     'commonjs2': 'react',
-  //     'amd': 'react',
-  //     // React dep should be available as window.React, not window.react
-  //     'root': 'React'
-  //   },
-  //   'react-dom': {
-  //     'commonjs': 'react-dom',
-  //     'commonjs2': 'react-dom',
-  //     'amd': 'react-dom',
-  //     'root': 'ReactDOM'
-  //   }
-  // },
+  devtool: 'source-map',
   module: {
     rules: [
       {
         test: /\.jsx?$/i,
+        exclude: /node_modules/,
         use: 'babel-loader',
       },
     ],
   },
   plugins,
+  // externals: [nodeExternals()],
   output: {
     path: config.build.distPath,
     // library: 'ReactDragResize',
