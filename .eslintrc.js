@@ -3,17 +3,29 @@ module.exports = {
     browser: true,
     es2021: true
   },
-  extends: ['plugin:react/recommended', 'airbnb', 'plugin:prettier/recommended'],
-  overrides: [],
+  extends: ['plugin:react/recommended', 'airbnb', 'plugin:prettier/recommended', 'plugin:storybook/recommended'],
+  overrides: [
+    {
+      files: [
+        '**/*.stories.*'
+      ],
+      rules: {
+        'import/no-anonymous-default-export': 'off'
+      }
+    }
+  ],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
   plugins: ['react', 'prettier'],
   rules: {
-    quotes: [2, 'single'], // 单引号
-    semi: [2, 'never'], // 不使用分号
-    'space-before-function-paren': [2, 'always'], // 函数前面加上空格
+    quotes: [2, 'single'],
+    // 单引号
+    semi: [2, 'never'],
+    // 不使用分号
+    'space-before-function-paren': [2, 'always'],
+    // 函数前面加上空格
     'import/prefer-default-export': 'off',
     'no-plusplus': 'off',
     'max-len': 'off',
@@ -27,4 +39,4 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 'off',
     'react/jsx-no-constructed-context-values': 'off'
   }
-}
+};

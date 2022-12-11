@@ -4,6 +4,7 @@ module.exports = {
     ['@babel/preset-react'],
   ],
   plugins: [
-    ['react-refresh/babel'],
+    // 热更新
+    // ['react-refresh/babel']
   ],
 }

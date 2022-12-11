@@ -6,7 +6,9 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack serve",
     "svg": "vsvg -s ./src/demo/svg -t ./src/demo/icons",
-    "build": "webpack"
+    "build": "webpack",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "author": {
     "name": "linjiahong",
@@ -38,6 +40,15 @@
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-react": "^7.18.6",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.9",
+    "@storybook/addon-actions": "^6.5.14",
+    "@storybook/addon-essentials": "^6.5.14",
+    "@storybook/addon-interactions": "^6.5.14",
+    "@storybook/addon-links": "^6.5.14",
+    "@storybook/builder-webpack5": "^6.5.14",
+    "@storybook/manager-webpack5": "^6.5.14",
+    "@storybook/node-logger": "^6.5.14",
+    "@storybook/react": "^6.5.14",
+    "@storybook/testing-library": "^0.0.13",
     "babel-loader": "^9.1.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.28.0",
@@ -48,6 +59,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.11",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-storybook": "^0.6.8",
     "html-webpack-plugin": "^5.5.0",
     "prettier": "^2.8.0",
     "react": "^18.2.0",
