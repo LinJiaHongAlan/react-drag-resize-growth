@@ -31,7 +31,7 @@ module.exports = {
     port: config.server.port,
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.json']
+    extensions: ['.js', '.jsx', '.tsx', '.json']
   },
   devtool: 'source-map',
   module: {
@@ -41,6 +41,11 @@ module.exports = {
         exclude: /node_modules/,
         use: 'babel-loader',
       },
+      {
+        test: /\.tsx?$/i,
+        exclude: /node_modules/,
+        use: 'babel-loader',
+      }
     ],
   },
   plugins,

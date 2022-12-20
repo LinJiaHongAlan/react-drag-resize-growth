@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    // 输出路径
+    "outDir": "dist",
+    // 编译结果
+    "module": "esnext",
+    "target": "es5",
+    // 生成.d.ts文件
+    "declaration": true,
+    "jsx": "react",
+    "moduleResolution":"Node",
+    "allowSyntheticDefaultImports": true,
+  },
+  // 作用于src下的文件
+  "include": [
+    "src"
+  ],
+  // 忽略掉得到文件
+  "exclude": [
+    "src/**/*.test.tsx",
+    "src/**/*.stories.tsx",
+    "src/setupTests.ts",
+  ]
+}
