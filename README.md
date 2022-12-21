@@ -11,6 +11,8 @@
 
 ## 功能预览
 
+[中文版演示地址](https://linjiahongalan.github.io/react-drag-resize-growth/index.html)
+
 ![](https://cdn.jsdelivr.net/gh/gorkys/CDN-Blog@master/Project/vue-draggable-resizable/demo.gif)
 
 ## 安装
