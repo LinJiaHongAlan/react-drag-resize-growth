@@ -6,7 +6,7 @@
 
 部分功能使用，基于考虑略有修改，相对于原本设计上进行了部分优化,支持操作操作回溯以及，键盘操作功能1.19版本,已修复引入报错问题
 
-[![npm](https://img.shields.io/badge/npm-1.1.9-brightgreen)](https://www.npmjs.com/package/react-drag-resize-growth)
+[![npm](https://img.shields.io/badge/npm-1.2.2-brightgreen)](https://www.npmjs.com/package/react-drag-resize-growth)
 [![downloads](https://img.shields.io/badge/downloads-186kb-green)](https://www.npmjs.com/package/react-drag-resize-growth)
 
 ## 功能预览

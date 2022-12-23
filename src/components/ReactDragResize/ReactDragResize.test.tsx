@@ -2,7 +2,8 @@
 * @jest-environment jsdom
 */
 import React from 'react'
-import { render, fireEvent } from '@testing-library/react'
+import { render } from '@testing-library/react'
+import { fireEvent } from '@testing-library/dom'
 import ReactDragResize from './ReactDragResize'
 
 
@@ -18,6 +19,7 @@ test('放入dom中', () => {
     </ReactDragResize>
   )
   const element = wrapper.getByTestId('testid-drag-resize')
+
   // 是否在界面上
   expect(element).toBeInTheDocument()
   // 判断高宽
@@ -26,4 +28,5 @@ test('放入dom中', () => {
     width: '100px',
     height: '150px'
   })
+
 })

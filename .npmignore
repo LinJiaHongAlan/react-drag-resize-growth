@@ -1,0 +1,6 @@
+*.html
+node_modules/
+docs/
+.idea/
+.git/
+src/demo/

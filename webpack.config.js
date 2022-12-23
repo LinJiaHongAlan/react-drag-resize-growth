@@ -1,7 +1,7 @@
 const webpack = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-// const nodeExternals = require('webpack-node-externals')
+const nodeExternals = require('webpack-node-externals')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const config = require('./config')
 // const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -49,7 +49,7 @@ module.exports = {
     ],
   },
   plugins,
-  // externals: [nodeExternals()],
+  externals: [nodeExternals()],
   output: {
     path: config.build.distPath,
     // library: 'ReactDragResize',

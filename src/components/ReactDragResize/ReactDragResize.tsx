@@ -49,7 +49,7 @@ interface ReactDragResizeProps {
   /**
    * 标识id
    */
-  comid?: string | null,
+  comid?: string,
   /**
    * 手柄大小
    */
@@ -65,7 +65,7 @@ interface ReactDragResizeProps {
   /**
    * 是否处于激活状态
    */
-  isActive?: boolean | null,
+  isActive?: boolean,
   /**
    * 组件是否应可拖动
    */
@@ -99,20 +99,20 @@ interface ReactDragResizeProps {
   /**
    * 父级宽度
    */
-  parentW?: number | null,
+  parentW?: number,
   /**
    * 父级宽度
    */
-  parentH?: number | null,
+  parentH?: number,
 
   /**
    * 受控宽度
    */
-  w?: number,
+  w: number | string,
   /**
    * 受控高度
    */
-  h?: number,
+  h: number | string,
   /**
    * 最小宽度
    */
@@ -144,11 +144,11 @@ interface ReactDragResizeProps {
   /**
    * 允许拖拽物体标识
    */
-  dragHandle?: string | null,
+  dragHandle?: string,
   /**
    * 不允许拖拽物体标识
    */
-  dragCancel?: string | null,
+  dragCancel?: string,
   /**
    * 手柄
    */
@@ -180,7 +180,7 @@ interface ReactDragResizeProps {
   /**
    * 按下拖拽物事件
    */
-  onClicBodyDown?: ((comid: string, ev: MouseEvent) => any) | null,
+  onClicBodyDown?: ((comid: string | undefined, ev: MouseEvent | TouchEvent) => any),
   /**
    * 按下拖拽物外边事件
    */
@@ -192,7 +192,7 @@ interface ReactDragResizeProps {
   /**
    * 拖拽中事件
    */
-  onDragging?: (() => any) | null,
+  onDragging?: (() => any),
   /**
    * 拖拽结束事件
    */
@@ -530,7 +530,7 @@ const ReactDragResize: FC<ReactDragResizeProps> = memo(
     }
 
     function changeActiveHandel (activeState: boolean) {
-      if (props.isActive === null) {
+      if (props.isActive === undefined) {
         setActive(activeState)
       }
     }
@@ -670,7 +670,7 @@ const ReactDragResize: FC<ReactDragResizeProps> = memo(
       setLimits(calcResizeLimits())
     }
 
-    function bodyDown (ev) {
+    function bodyDown (ev: MouseEvent | TouchEvent) {
       const { target, button } = ev
       // evm.button标识鼠标点击的方式 =0 代表左键 =2 右键 =1中间按键
       // 如果不是左键的话则中断
@@ -720,8 +720,9 @@ const ReactDragResize: FC<ReactDragResizeProps> = memo(
       }
 
       // 拿到点击位置的坐标
-      const pointerX = typeof ev.pageX !== 'undefined' ? ev.pageX : ev.touches[0].pageX
-      const pointerY = typeof ev.pageY !== 'undefined' ? ev.pageY : ev.touches[0].pageY
+      console.log(ev)
+      const pointerX = typeof (ev as MouseEvent).pageX !== 'undefined' ? (ev as MouseEvent).pageX : (ev as TouchEvent).touches[0].pageX
+      const pointerY = typeof (ev as MouseEvent).pageY !== 'undefined' ? (ev as MouseEvent).pageY : (ev as TouchEvent).touches[0].pageY
 
       // 保存信息当前鼠标点击位置，块的位置等
       saveDimensionsBeforeMove({ pointerX, pointerY })
@@ -1289,11 +1290,11 @@ const ReactDragResize: FC<ReactDragResizeProps> = memo(
 // }
 
 ReactDragResize.defaultProps = {
-  comid: null,
+  comid: undefined,
   stickSize: 8,
   parentScaleX: 1,
   parentScaleY: 1,
-  isActive: null,
+  isActive: undefined,
   isDraggable: true,
   isResizable: true,
   aspectRatio: false,
@@ -1301,8 +1302,8 @@ ReactDragResize.defaultProps = {
   snapToGrid: false,
   gridX: 50,
   gridY: 50,
-  parentW: null,
-  parentH: null,
+  parentW: undefined,
+  parentH: undefined,
   w: 200,
   h: 200,
   minw: 0,
@@ -1312,18 +1313,18 @@ ReactDragResize.defaultProps = {
   x: 0,
   y: 0,
   z: 'auto',
-  dragHandle: null,
-  dragCancel: null,
+  dragHandle: undefined,
+  dragCancel: undefined,
   sticks: ['tl', 'tm', 'tr', 'mr', 'br', 'bm', 'bl', 'ml'],
   classNameStick: null,
   stickSlot: {},
   axis: 'both',
   class: '',
   isConflictCheck: false,
-  onClicBodyDown: null,
+  onClicBodyDown: undefined,
   onDeselect: null,
   historyStepsLength: 0,
-  onDragging: null,
+  onDragging: undefined,
   onDragstop: null,
   onResizing: null,
   onResizestop: null,
