@@ -8,7 +8,7 @@
 
 1.2.3 版本修复 onResizestop 与 onResizing 不是组件最新的属性的问题
 
-[![npm](https://img.shields.io/badge/npm-1.2.2-brightgreen)](https://www.npmjs.com/package/react-drag-resize-growth)
+[![npm](https://img.shields.io/badge/npm-1.2.3-brightgreen)](https://www.npmjs.com/package/react-drag-resize-growth)
 [![downloads](https://img.shields.io/badge/downloads-186kb-green)](https://www.npmjs.com/package/react-drag-resize-growth)
 
 ## 功能预览
@@ -29,7 +29,6 @@ yarn add react-drag-resize-growth
 
 ```jsx
 import ReactDragResize from 'react-drag-resize-growth'
-
 ;<ReactDragResize></ReactDragResize>
 ```
 
