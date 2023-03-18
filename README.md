@@ -6,9 +6,9 @@
 
 部分功能使用，基于考虑略有修改，相对于原本设计上进行了部分优化,支持操作操作回溯以及，键盘操作功能 1.19 版本,已修复引入报错问题
 
-1.2.3 版本修复 onResizestop 与 onResizing 不是组件最新的属性的问题
+1.2.4 版本修复 onResizestop 与 onResizing 不是组件最新的属性的问题
 
-[![npm](https://img.shields.io/badge/npm-1.2.3-brightgreen)](https://www.npmjs.com/package/react-drag-resize-growth)
+[![npm](https://img.shields.io/badge/npm-1.2.4-brightgreen)](https://www.npmjs.com/package/react-drag-resize-growth)
 [![downloads](https://img.shields.io/badge/downloads-186kb-green)](https://www.npmjs.com/package/react-drag-resize-growth)
 
 ## 功能预览
