@@ -720,7 +720,6 @@ const ReactDragResize: FC<ReactDragResizeProps> = memo(
       }
 
       // 拿到点击位置的坐标
-      console.log(ev)
       const pointerX = typeof (ev as MouseEvent).pageX !== 'undefined' ? (ev as MouseEvent).pageX : (ev as TouchEvent).touches[0].pageX
       const pointerY = typeof (ev as MouseEvent).pageY !== 'undefined' ? (ev as MouseEvent).pageY : (ev as TouchEvent).touches[0].pageY
 
@@ -788,6 +787,7 @@ const ReactDragResize: FC<ReactDragResizeProps> = memo(
       let newBottom = dimensionsBeforeMoveSync.current.bottom
       let newLeft = dimensionsBeforeMoveSync.current.left
       let newRight = dimensionsBeforeMoveSync.current.right
+
       switch (currentStickSync.current[0]) {
         case 'b':
           newBottom = dimensionsBeforeMoveSync.current.bottom + delta.y
@@ -856,6 +856,10 @@ const ReactDragResize: FC<ReactDragResizeProps> = memo(
       setTop(newTop)
       setBottom(newBottom)
 
+      // 实时高宽
+      const newWidth = parentWidth - newLeft - newRight
+      const newHeight = parentHeight - newTop - newBottom
+
       // 传递事件将数据传递出去
       if (props.onResizing) {
         props.onResizing({
@@ -865,7 +869,9 @@ const ReactDragResize: FC<ReactDragResizeProps> = memo(
             top: newTop,
             left: newLeft,
             right: newRight,
-            bottom: newBottom
+            bottom: newBottom,
+            width: newWidth,
+            height: newHeight
           }
         })
       }
@@ -1058,10 +1064,12 @@ const ReactDragResize: FC<ReactDragResizeProps> = memo(
           comid: props.comid,
           beforeMove: dimensionsBeforeMoveSync.current,
           curMove: {
-            top,
-            left: top,
-            right: top,
-            bottom: top
+            top: topSync.current,
+            left: leftSync.current,
+            right: rightSync.current,
+            bottom: bottomSync.current,
+            width: parentWidth - leftSync.current - rightSync.current,
+            height: parentHeight - topSync.current - bottomSync.current
           }
         })
       }
@@ -1070,10 +1078,12 @@ const ReactDragResize: FC<ReactDragResizeProps> = memo(
           comid: props.comid,
           beforeMove: dimensionsBeforeMoveSync.current,
           curMove: {
-            top,
-            left: top,
-            right: top,
-            bottom: top
+            top: topSync.current,
+            left: leftSync.current,
+            right: rightSync.current,
+            bottom: bottomSync.current,
+            width: parentWidth - leftSync.current - rightSync.current,
+            height: parentHeight - topSync.current - bottomSync.current
           }
         })
       }

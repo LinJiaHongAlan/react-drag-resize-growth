@@ -5,7 +5,7 @@ export default {
   title: 'ReactDragResize/事件',
   decorators: [
     (Story) => (
-      <div style={{ height: '200px' }}>
+      <div style={{ height: '400px' }}>
         <Story />
       </div>
     ),
@@ -55,3 +55,27 @@ const Template2 = () => {
   )
 }
 export const 物体拖拽监听 = Template2.bind({});
+
+const Template3 = () => {
+  const [resizeing, setResizeing] = useState(false)
+  const onResizingHandel = ({ comid, beforeMove, curMove }) => {
+    console.log('缩放监听', comid, beforeMove, curMove)
+    setResizeing(true)
+  }
+
+  const onResizestopHandel = ({ comid, beforeMove, curMove }) => {
+    console.log('缩放结束监听', comid, beforeMove, curMove)
+    setResizeing(false)
+  }
+
+  return (
+    <ReactDragResize
+      comid="id1"
+      style={{backgroundColor: resizeing ? 'red' : 'pink'}}
+      onResizestop={onResizestopHandel}
+      onResizing={onResizingHandel}>
+        {resizeing ? '缩放中' : '请点击我缩放'}
+    </ReactDragResize>
+  )
+}
+export const 物体缩放监听 = Template3.bind({});
