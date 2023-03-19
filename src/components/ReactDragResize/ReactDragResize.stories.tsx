@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDragResize from './ReactDragResize';
 
 export default {
@@ -92,3 +92,15 @@ const Template6 = () => (
   </>
 )
 export const 允许部分控制 = Template6.bind({});
+
+
+const Template7 = () => (
+  <ReactDragResize
+    w={200}
+    h={100}
+    aspectRatio={true}
+    style={{ backgroundColor: '#ffe9c0' }}>
+    aspectRatio=true,会沿着最开始设置的高宽等比例缩放
+  </ReactDragResize>
+)
+export const 等比例缩放 = Template7.bind({});

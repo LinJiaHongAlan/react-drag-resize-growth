@@ -361,7 +361,7 @@ const ReactDragResize: FC<ReactDragResizeProps> = memo(
         return
       }
       const stick = 'mr'
-      const delta = oldVal - newVal
+      const delta = width - newVal
       stickDown(stick, { pageX: right, pageY: top + height / 2 }, true)
       stickMove({ x: delta, y: 0 })
       stickUp()
@@ -371,7 +371,7 @@ const ReactDragResize: FC<ReactDragResizeProps> = memo(
         return
       }
       const stick = 'bm'
-      const delta = oldVal - newVal
+      const delta = height - newVal
       stickDown(stick, { pageX: left + width / 2, pageY: bottom }, true)
       stickMove({ x: 0, y: delta })
       stickUp()
@@ -380,7 +380,7 @@ const ReactDragResize: FC<ReactDragResizeProps> = memo(
       if (stickDragSync.current || bodyDragSync.current || newVal === top) {
         return
       }
-      const delta = oldVal - newVal
+      const delta = top - newVal
       bodyDown({ pageX: left, pageY: top })
       bodyMove({ x: 0, y: delta })
       bodyUp()
@@ -389,7 +389,7 @@ const ReactDragResize: FC<ReactDragResizeProps> = memo(
       if (stickDragSync.current || bodyDragSync.current || newVal === left) {
         return
       }
-      const delta = oldVal - newVal
+      const delta = left - newVal
       bodyDown({ pageX: left, pageY: top })
       bodyMove({ x: delta, y: 0 })
       bodyUp()
@@ -578,10 +578,11 @@ const ReactDragResize: FC<ReactDragResizeProps> = memo(
 
       // 如果收父级限制
       if (props.parentLimitation) {
-        leftMin = leftMin < 0 ? 0 : leftMin
-        rightMin = rightMin < 0 ? 0 : rightMin
-        topMin = topMin < 0 ? 0 : topMin
-        bottomMin = bottomMin < 0 ? 0 : bottomMin
+        // 默认xxMin都是null，如果不为null必定是设置了最大或最小值maxh maxw
+        leftMin = (leftMin === null || leftMin < 0) ? 0 : leftMin
+        rightMin = (rightMin === null || rightMin < 0) ? 0 : rightMin
+        topMin = (topMin === null || topMin < 0) ? 0 : topMin
+        bottomMin = (bottomMin === null || bottomMin < 0) ? 0 : bottomMin
       }
 
       // 保存最小高宽
@@ -984,7 +985,9 @@ const ReactDragResize: FC<ReactDragResizeProps> = memo(
             top: newTop,
             left: newLeft,
             right: newRight,
-            bottom: newBottom
+            bottom: newBottom,
+            width: width,
+            height: height
           }
         })
       }
@@ -1115,10 +1118,12 @@ const ReactDragResize: FC<ReactDragResizeProps> = memo(
           comid: props.comid,
           beforeMove: dimensionsBeforeMoveSync.current,
           curMove: {
-            top,
-            left,
-            right,
-            bottom
+            top: topSync.current,
+            left: leftSync.current,
+            right: rightSync.current,
+            bottom: bottomSync.current,
+            width: width,
+            height: height
           }
         })
       }
@@ -1127,10 +1132,12 @@ const ReactDragResize: FC<ReactDragResizeProps> = memo(
           comid: props.comid,
           beforeMove: dimensionsBeforeMoveSync.current,
           curMove: {
-            top,
-            left,
-            right,
-            bottom
+            top: topSync.current,
+            left: leftSync.current,
+            right: rightSync.current,
+            bottom: bottomSync.current,
+            width: width,
+            height: height
           }
         })
       }
@@ -1228,76 +1235,6 @@ const ReactDragResize: FC<ReactDragResizeProps> = memo(
     )
   })
 )
-
-// ReactDragResize.propTypes = {
-//   // 移动步数 >=0
-//   gridX (props) {
-//     const val = props.gridX
-//     if (!(typeof val === 'number' && val >= 0)) {
-//       return new Error('参数gridX值类型校验失败')
-//     }
-//   },
-//   // 移动步数 >=0
-//   gridY (props) {
-//     const val = props.gridY
-//     if (!(typeof val === 'number' && val >= 0)) {
-//       return new Error('参数gridY值类型校验失败')
-//     }
-//   },
-//   // 父级宽度 >=0
-//   parentW (props) {
-//     const val = props.parentW
-//     if (!(typeof val === 'number' && val >= 0) && val !== null) {
-//       return new Error('参数parentW值类型校验失败')
-//     }
-//   },
-//   // 父级高度 >=0
-//   parentH (props) {
-//     const val = props.parentH
-//     if (!(typeof val === 'number' && val >= 0) && val !== null) {
-//       return new Error('参数parentH值类型校验失败')
-//     }
-//   },
-//   // 受控宽度
-//   w (props) {
-//     const val = props.w
-//     if (!(typeof val === 'string' ? val === 'auto' : val >= 0)) {
-//       return new Error('参数w值类型校验失败')
-//     }
-//   },
-//   // 受控高度
-//   h (props) {
-//     const val = props.h
-//     if (!(typeof val === 'string' ? val === 'auto' : val >= 0)) {
-//       return new Error('参数h值类型校验失败')
-//     }
-//   },
-//   // 最大宽度
-//   maxw (props) {
-//     const val = props.maxw
-//     if (!(typeof val === 'string' ? val === 'auto' : val >= 0)) {
-//       return new Error('参数maxh值类型校验失败')
-//     }
-//   },
-//   maxh (props) {
-//     const val = props.maxh
-//     if (!(typeof val === 'string' ? val === 'auto' : val >= 0)) {
-//       return new Error('参数maxh值类型校验失败')
-//     }
-//   },
-//   z (props) {
-//     const val = props.z
-//     if (!(typeof val === 'string' ? val === 'auto' : val >= 0)) {
-//       return new Error('参数z值类型校验失败')
-//     }
-//   },
-//   axis (props) {
-//     const val = props.axis
-//     if (!(typeof val === 'string' && ['x', 'y', 'both', 'none'].indexOf(val) !== -1)) {
-//       return new Error('参数axis值类型校验失败')
-//     }
-//   }
-// }
 
 ReactDragResize.defaultProps = {
   comid: undefined,

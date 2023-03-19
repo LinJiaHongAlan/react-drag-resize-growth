@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import ReactDragResize from './ReactDragResize';
 
 export default {
@@ -82,7 +82,6 @@ const Template4 = () => {
   const getHistoryStepsHandel = () =>{
     console.log(ReactDrageResizeRef.current.historySteps)
   }
-
 
   return (
     <div style={{width: '100%', height: '100%', position: 'relative', display: 'flex'}}>
