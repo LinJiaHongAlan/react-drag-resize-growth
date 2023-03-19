@@ -7,6 +7,7 @@
 部分功能使用，基于考虑略有修改，相对于原本设计上进行了部分优化,支持操作操作回溯以及，键盘操作功能 1.19 版本,已修复引入报错问题
 
 1.2.4 版本修复 onResizestop 与 onResizing 不是组件最新的属性的问题
+
 1.2.5 修复限制父级宽度的时候组件缩放会超出的问题，修复组件高宽以及位置改变时，位置不匹配问题
 
 [![npm](https://img.shields.io/badge/npm-1.2.5-brightgreen)](https://www.npmjs.com/package/react-drag-resize-growth)
